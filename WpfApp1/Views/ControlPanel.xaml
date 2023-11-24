@@ -1,0 +1,85 @@
+﻿<Window x:Class="WpfApp1.Views.ControlPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        Title="ControlPanel" Height="750" Width="1540" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="570"/>
+        </Grid.RowDefinitions>
+        <!--TOP-->
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.Background>
+                <SolidColorBrush>
+                    <SolidColorBrush.Color>
+                        <Color A="225" R="118" G="227" B="131"/>
+                    </SolidColorBrush.Color>
+                </SolidColorBrush>
+            </Grid.Background>
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label FontFamily="Comic Sans MS">Сортировка по цене:</Label>
+            <ComboBox Grid.Row="1" SelectionChanged="proxy_update_items" x:Name="OrderByPriceCombo">
+                <ComboBoxItem FontFamily="Comic Sans MS">Выкл</ComboBoxItem>
+                <ComboBoxItem FontFamily="Comic Sans MS">По возрастанию</ComboBoxItem>
+                <ComboBoxItem FontFamily="Comic Sans MS">По убыванию</ComboBoxItem>
+            </ComboBox>
+            <Label Grid.Column="1" Content="По категориям" FontFamily="Comic Sans MS"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" SelectionChanged="proxy_update_items" x:Name="SelectByCategs">
+                <ComboBoxItem FontFamily="Comic Sans MS">Выкл</ComboBoxItem>
+            </ComboBox>
+            <Label Grid.Column="2" Content="По названию и описанию" FontFamily="Comic Sans MS"/>
+            <TextBox Grid.Row="1" Grid.Column="2" TextChanged="proxy_update_items" x:Name="SelectByName" FontFamily="Comic Sans MS"/>
+            <Button Grid.Row="0" Grid.Column="3" Click="add_object" x:Name="add_button" FontFamily="Comic Sans MS">Добавить</Button>
+            <Button Grid.Row="1" Grid.Column="3" Click="update_object" x:Name="edit_button" FontFamily="Comic Sans MS">Редактировать</Button>
+            <Button Grid.Row="0" Grid.Column="4" Click="proxy_update_items" FontFamily="Comic Sans MS" >Обновить</Button>
+            
+
+
+        </Grid>
+        <!--Table-->
+        <DataGrid Grid.Row="2" Grid.Column="1" x:Name="DataTableOf" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Background>
+                <SolidColorBrush>
+                    <SolidColorBrush.Color>
+                        <Color A="225" R="118" G="227" B="131"/>
+                    </SolidColorBrush.Color>
+                </SolidColorBrush>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикль" Binding="{Binding ArticleNumber}" FontFamily="Comic Sans MS"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Cost}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Единица измерения" Binding="{Binding UnitMeasurement}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Максимальная скидка" Binding="{Binding MaxDiscount}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Manufacturer}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding Supplier}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category}" FontFamily="Comic Sans MS" />
+                <DataGridTextColumn Header="Остаток" Binding="{Binding QuantityInStock}" FontFamily="Comic Sans MS" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
